@@ -14,3 +14,13 @@ ec2-user@ec2-52-79-239-191.ap-northeast-2.compute.amazonaws.com: Permission deni
 ```
 
 2. wsl2에서 sudo를 통해 실행해줘야 함.
+
+**tips**
+
+- ec2에서는 docker와 같은 유틸리티를 보다 편리하게 설치할 수 있는 명령어가 내장되어 있음.
+
+```bash
+$ sudo yum update -y
+$ sudo amazon-linux-extras install docker
+$ sudo service docker start
+```
