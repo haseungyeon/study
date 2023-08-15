@@ -1,6 +1,5 @@
 import math
 def solution(fees:list, records:list):
-    # required_fees = []
     basic_minutes = fees[0]
     basic_fee = fees[1]
     unit_minutes = fees[2]
@@ -13,13 +12,11 @@ def solution(fees:list, records:list):
         car_num_key.setdefault(car_num, {"info": [], "fee": 0, "used_minutes": 0})
         car_num_key[car_num]["info"].append(record)
         if status == "OUT":
-            # car_num_key[car_num]["fee"] += basic_fee
+            # 출차 기록이 있을 경우 주차시간 누적
             car_num_key[car_num]["used_minutes"] += int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-1].split(" ")[0].split(":")[0])*60+\
             int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-1].split(" ")[0].split(":")[1])-\
             int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-2].split(" ")[0].split(":")[0])*60-\
             int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-2].split(" ")[0].split(":")[1])
-            # if basic_minutes < used_minutes:
-            #     car_num_key[car_num]["fee"] += unit_fee*math.ceil((used_minutes-basic_minutes)/unit_minutes)
     for car_num in car_num_key:
         car_num_key[car_num]["fee"] += basic_fee
         if car_num_key[car_num]["info"][-1].split(" ")[2] == "IN":
@@ -27,9 +24,9 @@ def solution(fees:list, records:list):
         if basic_minutes < car_num_key[car_num]["used_minutes"]:
             car_num_key[car_num]["fee"] += unit_fee*math.ceil((car_num_key[car_num]["used_minutes"]-basic_minutes)/unit_minutes)
     car_num_key = dict(sorted(car_num_key.items()))
-    print(car_num_key)
+    # print(car_num_key)
     answer = [car_num_key[x]["fee"] for x in car_num_key]
-    print(answer)
+    # print(answer)
     return answer
 
 fees = [180, 5000, 10, 600]
