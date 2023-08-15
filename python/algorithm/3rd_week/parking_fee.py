@@ -12,7 +12,6 @@ def solution(fees:list, records:list):
         car_num_key.setdefault(car_num, {"info": [], "fee": 0, "used_minutes": 0})
         car_num_key[car_num]["info"].append(record)
         if status == "OUT":
-            # 출차 기록이 있을 경우 주차시간 누적
             car_num_key[car_num]["used_minutes"] += int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-1].split(" ")[0].split(":")[0])*60+\
             int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-1].split(" ")[0].split(":")[1])-\
             int(car_num_key[car_num]["info"][len(car_num_key[car_num]["info"])-2].split(" ")[0].split(":")[0])*60-\
