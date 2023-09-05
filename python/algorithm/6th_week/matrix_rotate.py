@@ -1,7 +1,7 @@
 def solution(rows, columns, queries):
     answer = []
-    rectangular = [[(i+1)+j*6  for i in range(rows)] for j in range(columns)]
-    print(rectangular)
+    rectangular = [[(i+1)+j*rows for i in range(columns)] for j in range(rows)]
+    # print(rectangular)
     for query in queries:
         row_up    = query[0]-1
         col_left  = query[1]-1
@@ -25,10 +25,22 @@ def solution(rows, columns, queries):
             rectangular[row_down][col_right-index-1] = value
         for index, value in enumerate(rotate_up_list):
             rectangular[row_down-index-1][col_left] = value
-        print(rectangular)
+        # print(rectangular)
     return answer
 
-rows = 6
-columns = 6
-queries = [[2,2,5,4],[3,3,6,6],[5,1,6,3]]
-solution(rows, columns, queries)
+# rows = 6
+# columns = 6
+# queries = [[2,2,5,4],[3,3,6,6],[5,1,6,3]]
+
+# rows = 3
+# columns = 3
+# queries = [[1,1,2,2],[1,2,2,3],[2,1,3,2],[2,2,3,3]]
+
+# rows = 100
+# columns = 97
+# queries = [[1,1,100,97]]
+
+rows = 5
+columns = 4
+queries = [[1,1,5,4]]
+print(solution(rows, columns, queries))
