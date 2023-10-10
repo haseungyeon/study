@@ -234,7 +234,13 @@ https://may9noy.tistory.com/302
             type: front-end
     ```
     => service는 metadata의 name이나 label을 통해 pod를 특정한다. deployment의 template과는 다름!!
-  
+
+  **궁금했던 점**
+    ```bash
+    kubectl run custom-nginx --image=nginx --port=8080
+    ```
+    위와 같이 서비스를 이용하지 않고 pod에 포트를 직접 노출시키는 경우에는 단일 pod만을 외부에 노출하고자 할 때 사용할 수 있다고 함. 물론 ClusterIP와 마찬가지로 cluster 내부에서는 접근 가능.
+
 ## Namespace
 
 - kubernetes는 기본적으로 default namespace를 사용
@@ -272,3 +278,38 @@ https://may9noy.tistory.com/302
     ```yaml
     db-service.dev.svc.cluster.local # [svc_name].[namespace_name].[svc].cluster.local
     ```
+  ## kubectl local, last applied configuration, live object configuration (kubectl apply)
+
+  - local file은 사용자가 직접 작성하는 yaml file
+  - live object configuration은 k8s memory에 저장됨
+  - live object의 metadata.annotations 내부에 기록됨
+
+    ```bash
+    kubectl get <객체종류> <객체명> -o yaml
+    ```
+    위 명령 형식으로 확인 가능하다
+
+    ![Alt text](image-7.png)
+
+    아래의 절차에 익숙해지면 좋을듯 하다.
+
+    - pod 변경 예시
+
+      ```bash
+      
+      kubectl run nginx --image=nginx --dry-run=client -o yaml > nginx_pod.yaml
+      # nginx_pod.yaml 내에서 image 변경
+      kubectl apply -f 
+      ```
+
+      => --dry-run=client 옵션을 주지 않고 바로 생성하면 live object configuration 값들로 파일이 생성되어 일반적인 생성을 위한 declarative configuration 파일에는 포함되지 않는 값들이 추가되기 때문에 apply 명령을 실행할 경우 에러가 난다. 
+
+      ![Alt text](image-8.png)
+
+      https://stackoverflow.com/questions/51297136/kubectl-error-the-object-has-been-modified-please-apply-your-changes-to-the-la
+
+      
+      
+      또한 apply가 아닌 create 명령은 imperative 명령으로 설정되어 있기 때문에 last applied configuration이 업데이트 되지 않는다. 만약 create으로 last applied configuration를 업데이트 하고 싶다면 --save-config 옵션을 줘야 하므로 apply를 습관화 하는것이 좋아 보인다.
+
+      
