@@ -168,7 +168,9 @@ https://may9noy.tistory.com/302
 ### kubectl edit 파일
 
 - edit 명령어 실행 시
+
   ![Alt text](image-5.png)
+  
   명령 수행 시 파일을 /tmp/ 디렉터리 밑에 생성하고 명령 실행 후 즉시 삭제하여 주는 듯하다
 
 ## replicaset vs deployment
