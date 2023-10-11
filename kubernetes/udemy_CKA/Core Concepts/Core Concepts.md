@@ -138,10 +138,12 @@ $ ETCDCTL_API=3 # API 버전 변경 가능
 를 추가하여 kind 이름이 아닌 라벨을 단위로 pod를 관리한다.
 
   1. replica와 label이 다른 pod 기동 시
+
   ![Alt text](image-1.png)
   ![Alt text](image-2.png)
 
   2. replica와 label이 동일한 pod 기동 시
+
   ![Alt text](image-3.png)
   ![Alt text](image-4.png)
 
