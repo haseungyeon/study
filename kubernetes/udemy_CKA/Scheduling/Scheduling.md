@@ -15,3 +15,12 @@
 위 명령을 KodeKloud의 Core Concepts 파트의 labs 환경에서 실행해 보았지만 no resource라는 결과만 얻을 뿐이었다. 
 
 스케줄러가 제대로 기동되고 있는지는 강의내용에선 kube-system 네임스페이스 안에 pod 이름이 `scheduler` 인 것이 있는지를 통해 확인했지만 Core Concepts lab 환경에서는 `scheduler` 라는 단어가 포함된 pod
+
+## labels & selector
+
+명령어 팁
+
+    ```bash
+    kubectl get po --selector env=prod --no-headers | wc -l
+    ```
+=> header 제거하여 목록의 수를 반환(wc -l)
