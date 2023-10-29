@@ -275,6 +275,7 @@ https://may9noy.tistory.com/302
   ```bash
   kubectl get pods --namespace=dev # dev namespace의 pod 조회
   kubectl config set-context $(kubectl config current-context) --namespace=dev # dev namespace를 기본 namespace로 설정
+  kubectl config view --minify # namespace 확인
   kubectl get pods --all-namespaces # 모든 namespace에 대한 pod 전부 조회
   ```
 
