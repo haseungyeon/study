@@ -18,7 +18,7 @@
 
 ## labels & selector
 
-명령어 팁
+**명령어 팁**
 
     ```bash
     kubectl get po --selector env=prod --no-headers | wc -l
@@ -97,6 +97,14 @@ default 자원 제한량 정책을  단위로 pod, container 단위로 설정해
 
 **만약 ResourceQuota, LimitRange가 동시에 적용되어 있다면 무엇이 우선적용되는지??**
 => resourceQuota는 파드가 아닌 namespace 전체 리소스에 대한 제한, limitRange는 각각의 pod 또는 컨테이너의 리소스에 대한 제한이므로 두 개의 정책은 별도인 것 같다
+
+**yaml이 없는 object 편집 팁**
+
+```bash
+kubectl edit <object> <object-name>
+# vi 저장 후 
+kubectl replace --force -f /tmp/<temp-object-yaml>.yaml
+```
 
 ## DaemonSets
 ## Static Pods
